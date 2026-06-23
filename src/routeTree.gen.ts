@@ -13,6 +13,10 @@ import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SuccessStoriesIndexRouteImport } from './routes/success-stories.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as SuccessStoriesSlugRouteImport } from './routes/success-stories.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const SolutionsRoute = SolutionsRouteImport.update({
   id: '/solutions',
@@ -34,18 +38,46 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SuccessStoriesIndexRoute = SuccessStoriesIndexRouteImport.update({
+  id: '/success-stories/',
+  path: '/success-stories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuccessStoriesSlugRoute = SuccessStoriesSlugRouteImport.update({
+  id: '/success-stories/$slug',
+  path: '/success-stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/solutions': typeof SolutionsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/success-stories/$slug': typeof SuccessStoriesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/success-stories/': typeof SuccessStoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/solutions': typeof SolutionsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/success-stories/$slug': typeof SuccessStoriesSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/success-stories': typeof SuccessStoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +85,42 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/solutions': typeof SolutionsRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/success-stories/$slug': typeof SuccessStoriesSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/success-stories/': typeof SuccessStoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/solutions'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/solutions'
+    | '/blog/$slug'
+    | '/success-stories/$slug'
+    | '/blog/'
+    | '/success-stories/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/solutions'
-  id: '__root__' | '/' | '/about' | '/contact' | '/solutions'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/solutions'
+    | '/blog/$slug'
+    | '/success-stories/$slug'
+    | '/blog'
+    | '/success-stories'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/solutions'
+    | '/blog/$slug'
+    | '/success-stories/$slug'
+    | '/blog/'
+    | '/success-stories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +128,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   SolutionsRoute: typeof SolutionsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  SuccessStoriesSlugRoute: typeof SuccessStoriesSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  SuccessStoriesIndexRoute: typeof SuccessStoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +164,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/success-stories/': {
+      id: '/success-stories/'
+      path: '/success-stories'
+      fullPath: '/success-stories/'
+      preLoaderRoute: typeof SuccessStoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/success-stories/$slug': {
+      id: '/success-stories/$slug'
+      path: '/success-stories/$slug'
+      fullPath: '/success-stories/$slug'
+      preLoaderRoute: typeof SuccessStoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +200,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   SolutionsRoute: SolutionsRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  SuccessStoriesSlugRoute: SuccessStoriesSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  SuccessStoriesIndexRoute: SuccessStoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
