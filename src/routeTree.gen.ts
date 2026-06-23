@@ -21,7 +21,11 @@ import { Route as SuccessStoriesSlugRouteImport } from './routes/success-stories
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminMessagesRouteImport } from './routes/_authenticated/admin.messages'
+import { Route as AuthenticatedAdminSuccessStoriesIndexRouteImport } from './routes/_authenticated/admin.success-stories.index'
 import { Route as AuthenticatedAdminBlogsIndexRouteImport } from './routes/_authenticated/admin.blogs.index'
+import { Route as AuthenticatedAdminSuccessStoriesNewRouteImport } from './routes/_authenticated/admin.success-stories.new'
+import { Route as AuthenticatedAdminSuccessStoriesIdRouteImport } from './routes/_authenticated/admin.success-stories.$id'
 import { Route as AuthenticatedAdminBlogsNewRouteImport } from './routes/_authenticated/admin.blogs.new'
 import { Route as AuthenticatedAdminBlogsIdRouteImport } from './routes/_authenticated/admin.blogs.$id'
 
@@ -84,10 +88,34 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminMessagesRoute =
+  AuthenticatedAdminMessagesRouteImport.update({
+    id: '/messages',
+    path: '/messages',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSuccessStoriesIndexRoute =
+  AuthenticatedAdminSuccessStoriesIndexRouteImport.update({
+    id: '/success-stories/',
+    path: '/success-stories/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminBlogsIndexRoute =
   AuthenticatedAdminBlogsIndexRouteImport.update({
     id: '/blogs/',
     path: '/blogs/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSuccessStoriesNewRoute =
+  AuthenticatedAdminSuccessStoriesNewRouteImport.update({
+    id: '/success-stories/new',
+    path: '/success-stories/new',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSuccessStoriesIdRoute =
+  AuthenticatedAdminSuccessStoriesIdRouteImport.update({
+    id: '/success-stories/$id',
+    path: '/success-stories/$id',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedAdminBlogsNewRoute =
@@ -114,10 +142,14 @@ export interface FileRoutesByFullPath {
   '/success-stories/$slug': typeof SuccessStoriesSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/success-stories/': typeof SuccessStoriesIndexRoute
+  '/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
   '/admin/blogs/new': typeof AuthenticatedAdminBlogsNewRoute
+  '/admin/success-stories/$id': typeof AuthenticatedAdminSuccessStoriesIdRoute
+  '/admin/success-stories/new': typeof AuthenticatedAdminSuccessStoriesNewRoute
   '/admin/blogs/': typeof AuthenticatedAdminBlogsIndexRoute
+  '/admin/success-stories/': typeof AuthenticatedAdminSuccessStoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -129,10 +161,14 @@ export interface FileRoutesByTo {
   '/success-stories/$slug': typeof SuccessStoriesSlugRoute
   '/blog': typeof BlogIndexRoute
   '/success-stories': typeof SuccessStoriesIndexRoute
+  '/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
   '/admin/blogs/new': typeof AuthenticatedAdminBlogsNewRoute
+  '/admin/success-stories/$id': typeof AuthenticatedAdminSuccessStoriesIdRoute
+  '/admin/success-stories/new': typeof AuthenticatedAdminSuccessStoriesNewRoute
   '/admin/blogs': typeof AuthenticatedAdminBlogsIndexRoute
+  '/admin/success-stories': typeof AuthenticatedAdminSuccessStoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -147,10 +183,14 @@ export interface FileRoutesById {
   '/success-stories/$slug': typeof SuccessStoriesSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/success-stories/': typeof SuccessStoriesIndexRoute
+  '/_authenticated/admin/messages': typeof AuthenticatedAdminMessagesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/blogs/$id': typeof AuthenticatedAdminBlogsIdRoute
   '/_authenticated/admin/blogs/new': typeof AuthenticatedAdminBlogsNewRoute
+  '/_authenticated/admin/success-stories/$id': typeof AuthenticatedAdminSuccessStoriesIdRoute
+  '/_authenticated/admin/success-stories/new': typeof AuthenticatedAdminSuccessStoriesNewRoute
   '/_authenticated/admin/blogs/': typeof AuthenticatedAdminBlogsIndexRoute
+  '/_authenticated/admin/success-stories/': typeof AuthenticatedAdminSuccessStoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -165,10 +205,14 @@ export interface FileRouteTypes {
     | '/success-stories/$slug'
     | '/blog/'
     | '/success-stories/'
+    | '/admin/messages'
     | '/admin/'
     | '/admin/blogs/$id'
     | '/admin/blogs/new'
+    | '/admin/success-stories/$id'
+    | '/admin/success-stories/new'
     | '/admin/blogs/'
+    | '/admin/success-stories/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -180,10 +224,14 @@ export interface FileRouteTypes {
     | '/success-stories/$slug'
     | '/blog'
     | '/success-stories'
+    | '/admin/messages'
     | '/admin'
     | '/admin/blogs/$id'
     | '/admin/blogs/new'
+    | '/admin/success-stories/$id'
+    | '/admin/success-stories/new'
     | '/admin/blogs'
+    | '/admin/success-stories'
   id:
     | '__root__'
     | '/'
@@ -197,10 +245,14 @@ export interface FileRouteTypes {
     | '/success-stories/$slug'
     | '/blog/'
     | '/success-stories/'
+    | '/_authenticated/admin/messages'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/blogs/$id'
     | '/_authenticated/admin/blogs/new'
+    | '/_authenticated/admin/success-stories/$id'
+    | '/_authenticated/admin/success-stories/new'
     | '/_authenticated/admin/blogs/'
+    | '/_authenticated/admin/success-stories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -302,11 +354,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/messages': {
+      id: '/_authenticated/admin/messages'
+      path: '/messages'
+      fullPath: '/admin/messages'
+      preLoaderRoute: typeof AuthenticatedAdminMessagesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/success-stories/': {
+      id: '/_authenticated/admin/success-stories/'
+      path: '/success-stories'
+      fullPath: '/admin/success-stories/'
+      preLoaderRoute: typeof AuthenticatedAdminSuccessStoriesIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/blogs/': {
       id: '/_authenticated/admin/blogs/'
       path: '/blogs'
       fullPath: '/admin/blogs/'
       preLoaderRoute: typeof AuthenticatedAdminBlogsIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/success-stories/new': {
+      id: '/_authenticated/admin/success-stories/new'
+      path: '/success-stories/new'
+      fullPath: '/admin/success-stories/new'
+      preLoaderRoute: typeof AuthenticatedAdminSuccessStoriesNewRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/success-stories/$id': {
+      id: '/_authenticated/admin/success-stories/$id'
+      path: '/success-stories/$id'
+      fullPath: '/admin/success-stories/$id'
+      preLoaderRoute: typeof AuthenticatedAdminSuccessStoriesIdRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/blogs/new': {
@@ -327,17 +407,28 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminMessagesRoute: typeof AuthenticatedAdminMessagesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
   AuthenticatedAdminBlogsIdRoute: typeof AuthenticatedAdminBlogsIdRoute
   AuthenticatedAdminBlogsNewRoute: typeof AuthenticatedAdminBlogsNewRoute
+  AuthenticatedAdminSuccessStoriesIdRoute: typeof AuthenticatedAdminSuccessStoriesIdRoute
+  AuthenticatedAdminSuccessStoriesNewRoute: typeof AuthenticatedAdminSuccessStoriesNewRoute
   AuthenticatedAdminBlogsIndexRoute: typeof AuthenticatedAdminBlogsIndexRoute
+  AuthenticatedAdminSuccessStoriesIndexRoute: typeof AuthenticatedAdminSuccessStoriesIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminMessagesRoute: AuthenticatedAdminMessagesRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   AuthenticatedAdminBlogsIdRoute: AuthenticatedAdminBlogsIdRoute,
   AuthenticatedAdminBlogsNewRoute: AuthenticatedAdminBlogsNewRoute,
+  AuthenticatedAdminSuccessStoriesIdRoute:
+    AuthenticatedAdminSuccessStoriesIdRoute,
+  AuthenticatedAdminSuccessStoriesNewRoute:
+    AuthenticatedAdminSuccessStoriesNewRoute,
   AuthenticatedAdminBlogsIndexRoute: AuthenticatedAdminBlogsIndexRoute,
+  AuthenticatedAdminSuccessStoriesIndexRoute:
+    AuthenticatedAdminSuccessStoriesIndexRoute,
 }
 
 const AuthenticatedAdminRouteWithChildren =
