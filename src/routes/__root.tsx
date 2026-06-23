@@ -90,6 +90,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#5b2c81" },
+      { property: "og:title", content: "Aarambh Resource Management Solutions — Learning & Development Consulting" },
+      { name: "twitter:title", content: "Aarambh Resource Management Solutions — Learning & Development Consulting" },
+      { name: "description", content: "Aarambh Learning Hub is a corporate L&D consulting website showcasing expertise in capability building." },
+      { property: "og:description", content: "Aarambh Learning Hub is a corporate L&D consulting website showcasing expertise in capability building." },
+      { name: "twitter:description", content: "Aarambh Learning Hub is a corporate L&D consulting website showcasing expertise in capability building." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/02a792b7-a835-4d61-b9b4-d85a12928e59/id-preview-20b4bfd0--37548c7c-1484-4532-a436-84677d931bd0.lovable.app-1782195875972.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/02a792b7-a835-4d61-b9b4-d85a12928e59/id-preview-20b4bfd0--37548c7c-1484-4532-a436-84677d931bd0.lovable.app-1782195875972.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
