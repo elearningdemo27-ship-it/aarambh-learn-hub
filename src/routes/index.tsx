@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import partnersAsset from "@/assets/partners-grid.png.asset.json";
 
 
 export const Route = createFileRoute("/")({
