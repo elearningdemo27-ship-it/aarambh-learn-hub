@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import partnersAsset from "@/assets/partners-grid.png.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -328,17 +330,13 @@ function HomePage() {
           <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Trusted by L&amp;D and business leaders across industries
           </p>
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-            {["Apex Bank", "NorthStar", "Vyom Tech", "Indus Retail", "Lumen Pharma", "Volt Manufacturing"].map(
-              (name) => (
-                <div
-                  key={name}
-                  className="h-16 flex items-center justify-center rounded-xl border border-border bg-card text-sm font-medium text-muted-foreground tracking-wide"
-                >
-                  {name}
-                </div>
-              ),
-            )}
+          <div className="mt-10">
+            <img
+              src={partnersAsset.url}
+              alt="Our valued clients and partners including eBay, SBI Life, NSE Academy, IndiaFirst, BIBA, Ericsson, MFIN, Chandigarh University and more"
+              className="w-full max-w-5xl mx-auto rounded-xl"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
