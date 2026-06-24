@@ -331,7 +331,7 @@ function HomePage() {
           </p>
           <div className="mt-10">
             <img
-              src={partnersAsset.url}
+              src="/partners-grid.png"
               alt="Our valued clients and partners including eBay, SBI Life, NSE Academy, IndiaFirst, BIBA, Ericsson, MFIN, Chandigarh University and more"
               className="w-full max-w-5xl mx-auto rounded-xl"
               loading="lazy"
