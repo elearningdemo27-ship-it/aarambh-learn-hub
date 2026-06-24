@@ -1,4 +1,4 @@
-import logo from "@/assets/aarambh-logo.jpg";
+import logo from "@/assets/aarambh-logo.png";
 import { Link } from "@tanstack/react-router";
 
 export function Logo({ className = "" }: { className?: string }) {
