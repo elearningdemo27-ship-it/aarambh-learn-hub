@@ -23,6 +23,14 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import partnersAsset from "@/assets/partners-grid.png.asset.json";
+import heroBg from "@/assets/hero-bg.jpg";
+
+const partners = [
+  "eBay", "SBI Life", "NSE Academy", "IndiaFirst Life", "BIBA",
+  "Ericsson", "MFIN", "Chandigarh University", "ICICI Prudential",
+  "HDFC Life", "Axis Bank", "Tata Capital", "Reliance Retail", "Mahindra",
+];
+
 
 
 export const Route = createFileRoute("/")({
