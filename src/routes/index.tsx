@@ -143,6 +143,15 @@ const testimonials = [
 ];
 
 function HomePage() {
+  const testimonialRef = useRef<HTMLDivElement>(null);
+
+  const scrollTestimonials = (direction: "left" | "right") => {
+    const el = testimonialRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector("[data-carousel-card]")?.clientWidth ?? 380;
+    const gap = 24;
+    el.scrollBy({ left: direction === "left" ? -(cardWidth + gap) : cardWidth + gap, behavior: "smooth" });
+  };
   return (
     <SiteLayout>
       {/* HERO */}
