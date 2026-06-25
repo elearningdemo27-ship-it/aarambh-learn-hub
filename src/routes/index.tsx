@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import partnersAsset from "@/assets/partners-grid.png.asset.json";
+import heroBg from "@/assets/hero-bg.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const partners = [
