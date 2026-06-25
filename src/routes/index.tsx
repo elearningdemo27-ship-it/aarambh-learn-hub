@@ -298,6 +298,28 @@ function HomePage() {
         </div>
       </section>
 
+      {/* E-LEARNING VISUAL */}
+      <section className="section">
+        <div className="container-px mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl overflow-hidden shadow-elegant"
+          >
+            <img
+              src={elearningVisual}
+              alt="Corporate e-learning platform with courses, progress tracking and leadership development modules"
+              className="w-full h-auto object-cover"
+              loading="lazy"
+              width={1200}
+              height={800}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section className="section">
         <div className="container-px mx-auto max-w-7xl">
