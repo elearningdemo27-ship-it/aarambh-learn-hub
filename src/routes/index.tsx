@@ -22,8 +22,7 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-corporate.jpg";
-import elearningVisual from "@/assets/elearning-visual.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const partners = [
   "eBay", "SBI Life", "NSE Academy", "IndiaFirst Life", "BIBA",
@@ -295,28 +294,6 @@ function HomePage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* E-LEARNING VISUAL */}
-      <section className="section">
-        <div className="container-px mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl overflow-hidden shadow-elegant"
-          >
-            <img
-              src={elearningVisual}
-              alt="Corporate e-learning platform with courses, progress tracking and leadership development modules"
-              className="w-full h-auto object-cover"
-              loading="lazy"
-              width={1200}
-              height={800}
-            />
-          </motion.div>
         </div>
       </section>
 
