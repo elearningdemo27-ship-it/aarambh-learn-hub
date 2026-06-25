@@ -357,14 +357,19 @@ function HomePage() {
           <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Trusted by L&amp;D and business leaders across industries
           </p>
-          <div className="mt-10">
-            <img
-              src={partnersAsset.url}
-              alt="Our valued clients and partners including eBay, SBI Life, NSE Academy, IndiaFirst, BIBA, Ericsson, MFIN, Chandigarh University and more"
-              className="w-full max-w-5xl mx-auto rounded-xl"
-              loading="lazy"
-            />
+          <div className="mt-10 marquee-mask overflow-hidden">
+            <div className="marquee-track gap-3">
+              {[...partners, ...partners].map((name, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="shrink-0 px-7 py-4 rounded-full border border-border bg-card font-display text-lg text-foreground/80 whitespace-nowrap"
+                >
+                  {name}
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </section>
 
