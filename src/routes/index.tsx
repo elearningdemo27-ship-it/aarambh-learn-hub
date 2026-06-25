@@ -16,6 +16,8 @@ import {
   Brain,
   CheckCircle2,
   Quote,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
