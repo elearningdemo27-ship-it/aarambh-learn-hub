@@ -23,7 +23,6 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const partners = [
   "eBay", "SBI Life", "NSE Academy", "IndiaFirst Life", "BIBA",
