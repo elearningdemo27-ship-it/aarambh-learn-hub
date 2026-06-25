@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -16,6 +17,8 @@ import {
   Brain,
   CheckCircle2,
   Quote,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
@@ -140,6 +143,15 @@ const testimonials = [
 ];
 
 function HomePage() {
+  const testimonialRef = useRef<HTMLDivElement>(null);
+
+  const scrollTestimonials = (direction: "left" | "right") => {
+    const el = testimonialRef.current;
+    if (!el) return;
+    const cardWidth = el.querySelector("[data-carousel-card]")?.clientWidth ?? 380;
+    const gap = 24;
+    el.scrollBy({ left: direction === "left" ? -(cardWidth + gap) : cardWidth + gap, behavior: "smooth" });
+  };
   return (
     <SiteLayout>
       {/* HERO */}
@@ -344,13 +356,38 @@ function HomePage() {
       {/* TESTIMONIALS */}
       <section className="sand-bg">
         <div className="container-px mx-auto max-w-7xl section">
-          <div className="max-w-2xl">
-            <span className="eyebrow">In their words</span>
-            <h2 className="display-h2 mt-3">What partners say about working with us</h2>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="eyebrow">In their words</span>
+              <h2 className="display-h2 mt-3">What partners say about working with us</h2>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollTestimonials("left")}
+                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => scrollTestimonials("right")}
+                className="h-10 w-10 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
+          <div
+            ref={testimonialRef}
+            className="carousel-track mt-10 flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+          >
             {testimonials.map((t) => (
-              <div key={t.name} className="card-elegant p-7">
+              <div
+                key={t.name}
+                data-carousel-card
+                className="card-elegant p-7 flex-shrink-0 snap-start w-[85vw] md:w-[45vw] lg:w-[32vw]"
+              >
                 <Quote className="h-7 w-7 text-primary/40" />
                 <p className="mt-4 text-foreground/90 leading-relaxed">{t.quote}</p>
                 <div className="mt-6 pt-4 border-t border-border">
