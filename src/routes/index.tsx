@@ -22,7 +22,14 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import partnersAsset from "@/assets/partners-grid.png.asset.json";
+import heroBg from "@/assets/hero-bg.jpg";
+
+const partners = [
+  "eBay", "SBI Life", "NSE Academy", "IndiaFirst Life", "BIBA",
+  "Ericsson", "MFIN", "Chandigarh University", "ICICI Prudential",
+  "HDFC Life", "Axis Bank", "Tata Capital", "Reliance Retail", "Mahindra",
+];
+
 
 
 export const Route = createFileRoute("/")({
@@ -155,8 +162,15 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="hero-bg">
-        <div className="container-px mx-auto max-w-7xl pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-12 gap-10 items-center">
+      <section className="hero-bg relative overflow-hidden">
+        <div
+          className="absolute inset-0 -z-0 opacity-[0.35] bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroBg})` }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 -z-0 bg-gradient-to-r from-background via-background/85 to-background/40" aria-hidden />
+        <div className="relative container-px mx-auto max-w-7xl pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-12 gap-10 items-center">
+
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -342,14 +356,19 @@ function HomePage() {
           <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Trusted by L&amp;D and business leaders across industries
           </p>
-          <div className="mt-10">
-            <img
-              src={partnersAsset.url}
-              alt="Our valued clients and partners including eBay, SBI Life, NSE Academy, IndiaFirst, BIBA, Ericsson, MFIN, Chandigarh University and more"
-              className="w-full max-w-5xl mx-auto rounded-xl"
-              loading="lazy"
-            />
+          <div className="mt-10 marquee-mask overflow-hidden">
+            <div className="marquee-track gap-3">
+              {[...partners, ...partners].map((name, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="shrink-0 px-7 py-4 rounded-full border border-border bg-card font-display text-lg text-foreground/80 whitespace-nowrap"
+                >
+                  {name}
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </section>
 
