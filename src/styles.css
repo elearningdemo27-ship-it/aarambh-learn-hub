@@ -131,6 +131,10 @@
   ::selection { background: color-mix(in oklab, var(--primary) 30%, transparent); }
 }
 
+/* Carousel scrollbar hide */
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track { -ms-overflow-style: none; scrollbar-width: none; }
+
 @layer components {
   .container-px { padding-left: 1.25rem; padding-right: 1.25rem; }
   @media (min-width: 768px) { .container-px { padding-left: 2rem; padding-right: 2rem; } }
