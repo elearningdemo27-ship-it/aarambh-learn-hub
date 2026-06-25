@@ -163,8 +163,15 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="hero-bg">
-        <div className="container-px mx-auto max-w-7xl pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-12 gap-10 items-center">
+      <section className="hero-bg relative overflow-hidden">
+        <div
+          className="absolute inset-0 -z-0 opacity-[0.35] bg-cover bg-center"
+          style={{ backgroundImage: `url(${heroBg})` }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 -z-0 bg-gradient-to-r from-background via-background/85 to-background/40" aria-hidden />
+        <div className="relative container-px mx-auto max-w-7xl pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-12 gap-10 items-center">
+
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
