@@ -23,6 +23,8 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import partnersAsset from "@/assets/partners-grid.png.asset.json";
+import heroManAsset from "@/assets/hero-man.png.asset.json";
+import heroWomanAsset from "@/assets/hero-woman.png.asset.json";
 
 
 export const Route = createFileRoute("/")({
