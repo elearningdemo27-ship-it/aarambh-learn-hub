@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Building2,
@@ -23,6 +23,8 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import partnersAsset from "@/assets/partners-grid.png.asset.json";
+import heroManAsset from "@/assets/hero-man.png.asset.json";
+import heroWomanAsset from "@/assets/hero-woman.png.asset.json";
 
 
 export const Route = createFileRoute("/")({
@@ -142,8 +144,23 @@ const testimonials = [
   },
 ];
 
+const heroSlides = [heroManAsset.url, heroWomanAsset.url];
+
+const heroHighlights = [
+  "Practitioner-led learning design",
+  "Deep BFSI, sales & leadership expertise",
+  "Digital, AI-enabled & experiential delivery",
+  "Measurable workplace impact",
+];
+
 function HomePage() {
   const testimonialRef = useRef<HTMLDivElement>(null);
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 5500);
+    return () => clearInterval(id);
+  }, []);
 
   const scrollTestimonials = (direction: "left" | "right") => {
     const el = testimonialRef.current;
@@ -155,24 +172,40 @@ function HomePage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="hero-bg">
-        <div className="container-px mx-auto max-w-7xl pt-20 pb-24 md:pt-28 md:pb-32 grid lg:grid-cols-12 gap-10 items-center">
+      <section className="relative overflow-hidden bg-primary-soft">
+        {/* Background carousel */}
+        <div className="absolute inset-0">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={slide}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${heroSlides[slide]})` }}
+            />
+          </AnimatePresence>
+          {/* Readability gradient over left side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 md:via-white/70 to-transparent" />
+        </div>
+
+        <div className="relative container-px mx-auto max-w-7xl min-h-[88vh] md:min-h-[640px] flex items-center pt-24 pb-20 md:pt-28 md:pb-24">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-7"
+            className="max-w-2xl"
           >
             <span className="eyebrow">Learning & Development Consulting</span>
             <h1 className="display-h1 mt-5 text-foreground">
               Learning That Builds <em className="text-primary not-italic">Capability</em>—Not
               Just Completion
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              We help organisations design learning solutions that go beyond content creation.
-              Through instructional design, digital learning, facilitated workshops, experiential
-              programs and AI-enabled learning workflows, we build capability that improves
-              workplace performance.
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+              Instructional design, digital learning, facilitated workshops, experiential
+              programs and AI-enabled workflows that build capability and improve workplace
+              performance.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg">
@@ -184,48 +217,43 @@ function HomePage() {
                 <Link to="/contact">Discuss Your Learning Need</Link>
               </Button>
             </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="lg:col-span-5"
-          >
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-primary/20 to-gold/20 blur-2xl" />
-              <div className="relative card-elegant p-7">
-                <div className="flex items-center gap-2 text-sm font-semibold text-primary">
-                  <Sparkles className="h-4 w-4" /> Why teams choose Aarambh
-                </div>
-                <ul className="mt-5 space-y-4">
-                  {[
-                    "Practitioner-led learning design",
-                    "Deep BFSI, sales & leadership expertise",
-                    "Digital, AI-enabled & experiential delivery",
-                    "Measurable workplace impact",
-                  ].map((item) => (
-                    <li key={item} className="flex gap-3 text-sm">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-foreground/90">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 pt-5 border-t border-border grid grid-cols-3 gap-2 text-center">
-                  {impact.slice(0, 3).map((s) => (
-                    <div key={s.label}>
-                      <div className="font-display text-2xl text-primary">{s.value}</div>
-                      <div className="text-[11px] uppercase tracking-wide text-muted-foreground mt-1">
-                        {s.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* Slide indicators */}
+            <div className="mt-10 flex items-center gap-2">
+              {heroSlides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSlide(i)}
+                  aria-label={`Slide ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === slide ? "w-10 bg-primary" : "w-5 bg-primary/30"
+                  }`}
+                />
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* WHY TEAMS CHOOSE — strip under hero */}
+      <section className="border-y border-border bg-background">
+        <div className="container-px mx-auto max-w-7xl py-8 md:py-10">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+            <div className="flex items-center gap-2 text-sm font-semibold text-primary shrink-0">
+              <Sparkles className="h-4 w-4" /> Why teams choose Aarambh
+            </div>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 flex-1">
+              {heroHighlights.map((item) => (
+                <li key={item} className="flex gap-2.5 text-sm">
+                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                  <span className="text-foreground/90">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
 
       {/* INDUSTRIES */}
       <section className="section">
