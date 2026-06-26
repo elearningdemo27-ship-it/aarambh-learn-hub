@@ -92,31 +92,37 @@ const services = [
     icon: Compass,
     title: "Learning Strategy & Consulting",
     desc: "TNA, capability mapping, learning journeys and impact planning.",
+    image: serviceStrategy,
   },
   {
     icon: BookOpen,
     title: "Instructional Design & Content",
     desc: "ILT, eLearning, blended programs, SCORM, microlearning and more.",
+    image: serviceDesign,
   },
   {
     icon: Sparkles,
     title: "AI-Enabled Learning",
     desc: "AI job aids, prompt libraries, AI literacy and skill practice.",
+    image: serviceAi,
   },
   {
     icon: Brain,
     title: "Training Delivery & Facilitation",
     desc: "BFSI, soft skills, leadership, sales, TTT and managerial programs.",
+    image: serviceFacilitation,
   },
   {
     icon: Mountain,
     title: "Offsites & Experiential",
     desc: "Leadership retreats, team alignment, outbound and simulations.",
+    image: serviceOffsite,
   },
   {
     icon: Mic2,
     title: "Keynotes & Motivational",
     desc: "Leadership, resilience, ownership and performance mindset talks.",
+    image: serviceKeynote,
   },
 ] as const;
 
