@@ -25,6 +25,12 @@ import { Button } from "@/components/ui/button";
 import partnersAsset from "@/assets/partners-grid.png.asset.json";
 import heroManAsset from "@/assets/hero-man.png.asset.json";
 import heroWomanAsset from "@/assets/hero-woman.png.asset.json";
+import serviceStrategy from "@/assets/service-strategy.jpg";
+import serviceDesign from "@/assets/service-design.jpg";
+import serviceAi from "@/assets/service-ai.jpg";
+import serviceFacilitation from "@/assets/service-facilitation.jpg";
+import serviceOffsite from "@/assets/service-offsite.jpg";
+import serviceKeynote from "@/assets/service-keynote.jpg";
 
 
 export const Route = createFileRoute("/")({
@@ -86,31 +92,37 @@ const services = [
     icon: Compass,
     title: "Learning Strategy & Consulting",
     desc: "TNA, capability mapping, learning journeys and impact planning.",
+    image: serviceStrategy,
   },
   {
     icon: BookOpen,
     title: "Instructional Design & Content",
     desc: "ILT, eLearning, blended programs, SCORM, microlearning and more.",
+    image: serviceDesign,
   },
   {
     icon: Sparkles,
     title: "AI-Enabled Learning",
     desc: "AI job aids, prompt libraries, AI literacy and skill practice.",
+    image: serviceAi,
   },
   {
     icon: Brain,
     title: "Training Delivery & Facilitation",
     desc: "BFSI, soft skills, leadership, sales, TTT and managerial programs.",
+    image: serviceFacilitation,
   },
   {
     icon: Mountain,
     title: "Offsites & Experiential",
     desc: "Leadership retreats, team alignment, outbound and simulations.",
+    image: serviceOffsite,
   },
   {
     icon: Mic2,
     title: "Keynotes & Motivational",
     desc: "Leadership, resilience, ownership and performance mindset talks.",
+    image: serviceKeynote,
   },
 ] as const;
 
@@ -270,14 +282,21 @@ function HomePage() {
             </p>
           </div>
           <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map(({ icon: Icon, label }) => (
-              <div
+            {industries.map(({ icon: Icon, label }, i) => (
+              <motion.div
                 key={label}
-                className="card-elegant p-6 flex flex-col items-center text-center"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                whileHover={{ y: -4 }}
+                className="group card-elegant p-6 flex flex-col items-center text-center transition-colors hover:border-primary/40 hover:bg-primary-soft/40"
               >
-                <Icon className="h-7 w-7 text-primary" />
+                <div className="h-11 w-11 rounded-xl bg-primary-soft text-primary flex items-center justify-center transition-transform group-hover:scale-110">
+                  <Icon className="h-5 w-5" />
+                </div>
                 <div className="mt-3 text-sm font-medium">{label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -328,21 +347,42 @@ function HomePage() {
             </Button>
           </div>
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(({ icon: Icon, title, desc }) => (
-              <Link
+            {services.map(({ icon: Icon, title, desc, image }, i) => (
+              <motion.div
                 key={title}
-                to="/solutions"
-                className="card-elegant p-7 group block"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
               >
-                <div className="h-12 w-12 rounded-xl bg-primary-soft text-primary flex items-center justify-center">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 text-xl font-display">{title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                <div className="mt-5 inline-flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition">
-                  Learn more <ArrowRight className="ml-1.5 h-4 w-4" />
-                </div>
-              </Link>
+                <Link
+                  to="/solutions"
+                  className="group relative block overflow-hidden rounded-2xl border border-border bg-card shadow-sm hover:shadow-elegant transition-all duration-500 hover:-translate-y-1"
+                >
+                  {/* Image background */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={image}
+                      alt={title}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                    <div className="absolute top-4 left-4 h-11 w-11 rounded-xl bg-background/95 backdrop-blur text-primary flex items-center justify-center shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                  </div>
+                  {/* Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-display">{title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                    <div className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+                      Learn more
+                      <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -352,13 +392,22 @@ function HomePage() {
       <section className="bg-[color-mix(in_oklab,var(--primary)_96%,white)] text-primary-foreground">
         <div className="container-px mx-auto max-w-7xl py-20">
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
-            {impact.map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-4xl md:text-5xl">{s.value}</div>
+            {impact.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="group"
+              >
+                <div className="font-display text-4xl md:text-5xl transition-transform group-hover:scale-110">
+                  {s.value}
+                </div>
                 <div className="mt-2 text-xs uppercase tracking-widest text-primary-foreground/70">
                   {s.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
