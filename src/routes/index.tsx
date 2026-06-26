@@ -25,6 +25,12 @@ import { Button } from "@/components/ui/button";
 import partnersAsset from "@/assets/partners-grid.png.asset.json";
 import heroManAsset from "@/assets/hero-man.png.asset.json";
 import heroWomanAsset from "@/assets/hero-woman.png.asset.json";
+import serviceStrategy from "@/assets/service-strategy.jpg";
+import serviceDesign from "@/assets/service-design.jpg";
+import serviceAi from "@/assets/service-ai.jpg";
+import serviceFacilitation from "@/assets/service-facilitation.jpg";
+import serviceOffsite from "@/assets/service-offsite.jpg";
+import serviceKeynote from "@/assets/service-keynote.jpg";
 
 
 export const Route = createFileRoute("/")({
