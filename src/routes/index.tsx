@@ -392,13 +392,22 @@ function HomePage() {
       <section className="bg-[color-mix(in_oklab,var(--primary)_96%,white)] text-primary-foreground">
         <div className="container-px mx-auto max-w-7xl py-20">
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
-            {impact.map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-4xl md:text-5xl">{s.value}</div>
+            {impact.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="group"
+              >
+                <div className="font-display text-4xl md:text-5xl transition-transform group-hover:scale-110">
+                  {s.value}
+                </div>
                 <div className="mt-2 text-xs uppercase tracking-widest text-primary-foreground/70">
                   {s.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
