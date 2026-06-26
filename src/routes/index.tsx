@@ -282,14 +282,21 @@ function HomePage() {
             </p>
           </div>
           <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {industries.map(({ icon: Icon, label }) => (
-              <div
+            {industries.map(({ icon: Icon, label }, i) => (
+              <motion.div
                 key={label}
-                className="card-elegant p-6 flex flex-col items-center text-center"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                whileHover={{ y: -4 }}
+                className="group card-elegant p-6 flex flex-col items-center text-center transition-colors hover:border-primary/40 hover:bg-primary-soft/40"
               >
-                <Icon className="h-7 w-7 text-primary" />
+                <div className="h-11 w-11 rounded-xl bg-primary-soft text-primary flex items-center justify-center transition-transform group-hover:scale-110">
+                  <Icon className="h-5 w-5" />
+                </div>
                 <div className="mt-3 text-sm font-medium">{label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
