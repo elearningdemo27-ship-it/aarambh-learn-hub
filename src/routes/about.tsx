@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Award, Compass, Sparkles, Users2, ArrowRight } from "lucide-react";
+import { Award, Compass, Sparkles, Users2, ArrowRight, GraduationCap, LayoutTemplate, MessagesSquare, TrendingUp, BrainCircuit, Target } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 
