@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Award, Compass, Sparkles, Users2, ArrowRight } from "lucide-react";
+import { Award, Compass, Sparkles, Users2, ArrowRight, GraduationCap, LayoutTemplate, MessagesSquare, TrendingUp, BrainCircuit, Target } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 
@@ -26,11 +26,11 @@ export const Route = createFileRoute("/about")({
 });
 
 const diffs = [
-  ["Practitioner-led experience", "We understand real workplace challenges"],
-  ["Instructional design depth", "We structure learning for clarity and retention"],
-  ["Facilitation strength", "We create engagement and reflection"],
-  ["BFSI and sales understanding", "We build domain-relevant learning"],
-  ["AI-ready mindset", "We help clients modernise learning without losing quality"],
+  { icon: GraduationCap, title: "Practitioner-led Experience", body: "We understand real workplace challenges and bring practical insight into every learning solution." },
+  { icon: LayoutTemplate, title: "Instructional Design Depth", body: "We structure content for clarity, retention, and meaningful application." },
+  { icon: MessagesSquare, title: "Facilitation Strength", body: "We create engagement, reflection, and conversations that lead to behavioural shift." },
+  { icon: TrendingUp, title: "BFSI & Sales Understanding", body: "We build domain-relevant learning that connects with business and customer realities." },
+  { icon: BrainCircuit, title: "AI-ready Mindset", body: "We help clients modernise learning while preserving quality, context, and learner relevance." },
 ];
 
 const founders = [
@@ -104,28 +104,74 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="sand-bg">
-        <div className="container-px mx-auto max-w-7xl section">
-          <div className="max-w-2xl">
-            <span className="eyebrow">What makes us different</span>
-            <h2 className="display-h2 mt-3">The Aarambh approach</h2>
+      <section className="sand-bg relative overflow-hidden">
+        {/* decorative brush strokes */}
+        <div aria-hidden className="absolute -top-10 -left-10 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
+        <div aria-hidden className="absolute -bottom-10 -right-10 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
+        <div aria-hidden className="absolute top-10 right-12 grid grid-cols-6 gap-1.5 opacity-40">
+          {Array.from({ length: 36 }).map((_, i) => (
+            <span key={i} className="h-1 w-1 rounded-full bg-primary/50" />
+          ))}
+        </div>
+        <div aria-hidden className="absolute bottom-10 left-12 grid grid-cols-6 gap-1.5 opacity-40">
+          {Array.from({ length: 36 }).map((_, i) => (
+            <span key={i} className="h-1 w-1 rounded-full bg-primary/50" />
+          ))}
+        </div>
+
+        <div className="container-px mx-auto max-w-7xl section relative">
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="eyebrow justify-center">Who we are</span>
+            <h2 className="display-h2 mt-4">
+              What Makes Us <span className="text-primary">Different</span>
+            </h2>
+            <div className="mx-auto mt-3 h-[3px] w-20 bg-primary rounded-full" />
+            <p className="mt-5 text-muted-foreground text-lg">
+              Practitioner-led learning. Designed for real workplace impact.
+            </p>
           </div>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-            {diffs.map(([title, body], i) => (
+
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {diffs.map(({ icon: Icon, title, body }, i) => (
               <motion.div
                 key={title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="card-elegant p-6"
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative bg-card rounded-2xl border border-border p-7 text-center shadow-soft hover:shadow-elegant hover:-translate-y-1.5 transition-all duration-300 overflow-hidden"
               >
-                <div className="text-3xl font-display text-primary/40">0{i + 1}</div>
-                <div className="mt-3 font-semibold">{title}</div>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{body}</p>
+                {/* purple corner accent */}
+                <div aria-hidden className="absolute top-0 right-0 h-10 w-10 bg-primary [clip-path:polygon(100%_0,0_0,100%_100%)]" />
+                {/* bottom underline that grows on hover */}
+                <div aria-hidden className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] w-10 bg-primary rounded-full transition-all duration-300 group-hover:w-24" />
+
+                <div className="mx-auto h-20 w-20 rounded-full bg-primary-soft grid place-items-center ring-8 ring-primary/5 group-hover:ring-primary/10 transition">
+                  <Icon className="h-9 w-9 text-primary" />
+                </div>
+                <div className="mt-5 font-display font-semibold text-lg leading-snug">{title}</div>
+                <div className="mx-auto mt-3 h-px w-10 bg-border" />
+                <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{body}</p>
               </motion.div>
             ))}
           </div>
+
+          {/* focus banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 mx-auto max-w-3xl rounded-2xl bg-card border border-primary/15 shadow-soft px-6 py-5 flex items-center gap-4"
+          >
+            <div className="h-12 w-12 rounded-full bg-primary-soft grid place-items-center shrink-0">
+              <Target className="h-6 w-6 text-primary" />
+            </div>
+            <p className="text-sm md:text-base">
+              <span className="font-semibold">Our focus is simple:</span>{" "}
+              <span className="text-primary font-semibold">Better Learning. Stronger Performance. Real Impact.</span>
+            </p>
+          </motion.div>
         </div>
       </section>
 
