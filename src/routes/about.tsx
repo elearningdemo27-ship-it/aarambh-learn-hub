@@ -26,11 +26,11 @@ export const Route = createFileRoute("/about")({
 });
 
 const diffs = [
-  ["Practitioner-led experience", "We understand real workplace challenges"],
-  ["Instructional design depth", "We structure learning for clarity and retention"],
-  ["Facilitation strength", "We create engagement and reflection"],
-  ["BFSI and sales understanding", "We build domain-relevant learning"],
-  ["AI-ready mindset", "We help clients modernise learning without losing quality"],
+  { icon: GraduationCap, title: "Practitioner-led Experience", body: "We understand real workplace challenges and bring practical insight into every learning solution." },
+  { icon: LayoutTemplate, title: "Instructional Design Depth", body: "We structure content for clarity, retention, and meaningful application." },
+  { icon: MessagesSquare, title: "Facilitation Strength", body: "We create engagement, reflection, and conversations that lead to behavioural shift." },
+  { icon: TrendingUp, title: "BFSI & Sales Understanding", body: "We build domain-relevant learning that connects with business and customer realities." },
+  { icon: BrainCircuit, title: "AI-ready Mindset", body: "We help clients modernise learning while preserving quality, context, and learner relevance." },
 ];
 
 const founders = [
