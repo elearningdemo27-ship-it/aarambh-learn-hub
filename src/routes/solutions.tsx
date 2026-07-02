@@ -212,8 +212,13 @@ function SolutionsPage() {
               </div>
             </div>
           </div>
+
+          {/* Solution-specific extras */}
+          {s.id === "strategy" && <StrategyExtras />}
+          {s.id === "id" && <ContentExtras />}
         </section>
       ))}
+
     </SiteLayout>
   );
 }
