@@ -221,7 +221,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section id="founders" className="section scroll-mt-24">
+
         <div className="container-px mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <span className="eyebrow">Founders</span>
