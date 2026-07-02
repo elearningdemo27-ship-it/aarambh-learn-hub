@@ -222,3 +222,208 @@ function SolutionsPage() {
     </SiteLayout>
   );
 }
+
+/* -------------------- Strategy extras -------------------- */
+
+const strategyHelpBuild = [
+  { icon: Search, title: "Training Needs Analysis (TNA)", body: "Identify learning gaps, business priorities, and capability needs." },
+  { icon: RouteIcon, title: "Learning Journey Design", body: "Structure learning across roles, levels, and touchpoints." },
+  { icon: LayoutGrid, title: "Storyboarding & Content Structuring", body: "Convert raw inputs into clear, logical learning flows." },
+  { icon: Users, title: "Adult Learning & Engagement Strategy", body: "Apply principles that make learning relevant and interactive." },
+  { icon: ClipboardCheck, title: "Assessment Design", body: "Build checks, practice, and evaluation aligned to outcomes." },
+  { icon: BarChart3, title: "Impact Measurement", body: "Connect learning takeaways with application and performance." },
+];
+
+const strategyApproach = [
+  { n: "1", text: "Understand the business context and performance need" },
+  { n: "2", text: "Define learner profiles, audience needs, and success expectations" },
+  { n: "3", text: "Design the learning journey across roles, levels, and stages" },
+  { n: "4", text: "Structure content, engagement methods, and practice opportunities" },
+  { n: "5", text: "Align assessments, application, and impact measurement" },
+];
+
+const strategyPillars = [
+  { icon: Building2, title: "Business-Aligned", body: "Keeps learning anchored to organisational goals and performance outcomes." },
+  { icon: Users, title: "Learner-Centred", body: "Builds journeys around audience context, motivation, and practical relevance." },
+  { icon: Target, title: "Outcome-Focused", body: "Ensures learning is structured for application, recall, and measurable impact." },
+];
+
+function StrategyExtras() {
+  return (
+    <div className="container-px mx-auto max-w-7xl pb-24 -mt-8 md:-mt-16">
+      {/* What We Help You Build */}
+      <div className="text-center max-w-3xl mx-auto">
+        <h3 className="display-h2">What We Help You Build</h3>
+        <div className="mx-auto mt-3 h-[3px] w-16 bg-primary rounded-full" />
+      </div>
+      <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {strategyHelpBuild.map(({ icon: Icon, title, body }) => (
+          <div key={title} className="card-elegant p-6 flex gap-4">
+            <div className="h-12 w-12 shrink-0 rounded-full border-2 border-primary/30 grid place-items-center text-primary">
+              <Icon className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="font-display font-semibold">{title}</div>
+              <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Our Approach */}
+      <div className="mt-20 text-center max-w-3xl mx-auto">
+        <h3 className="display-h2">Our Approach</h3>
+        <div className="mx-auto mt-3 h-[3px] w-16 bg-primary rounded-full" />
+        <p className="mt-4 text-muted-foreground">
+          A strategic process that turns business needs into meaningful learning architecture.
+        </p>
+      </div>
+      <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        {strategyApproach.map((step, i) => (
+          <motion.div
+            key={step.n}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: i * 0.08 }}
+            className="card-elegant p-5 relative"
+          >
+            <div className="absolute -top-3 -left-3 h-10 w-10 rounded-full bg-primary text-primary-foreground grid place-items-center font-display text-lg shadow-elegant">
+              {step.n}
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-foreground/85">{step.text}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Three pillars */}
+      <div className="mt-16 grid md:grid-cols-3 gap-5">
+        {strategyPillars.map(({ icon: Icon, title, body }) => (
+          <div key={title} className="card-elegant p-6 text-center">
+            <div className="mx-auto h-14 w-14 rounded-full bg-primary-soft grid place-items-center">
+              <Icon className="h-6 w-6 text-primary" />
+            </div>
+            <div className="mt-4 font-display font-semibold">{title}</div>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{body}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA banner */}
+      <div className="mt-14 rounded-3xl bg-primary text-primary-foreground p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-elegant">
+        <div className="flex items-start gap-4">
+          <div className="h-12 w-12 rounded-full bg-primary-foreground/15 grid place-items-center shrink-0">
+            <Users className="h-6 w-6" />
+          </div>
+          <div>
+            <div className="font-display text-xl">Need a learning strategy that turns content into capability?</div>
+            <p className="mt-1.5 text-sm text-primary-foreground/85">
+              Let's design learning journeys that are structured, engaging, and aligned to business outcomes.
+            </p>
+          </div>
+        </div>
+        <Button asChild size="lg" variant="secondary" className="shrink-0">
+          <Link to="/contact">
+            Talk to Us <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------- Content extras -------------------- */
+
+const contentDeliver = [
+  { icon: FileText, text: "ILT decks, facilitator guides, participant workbooks" },
+  { icon: MonitorPlay, text: "eLearning modules (SCORM compliant, Storyline-based)" },
+  { icon: Layers, text: "Blended learning journeys (digital + classroom integration)" },
+];
+
+const contentFormats = [
+  {
+    icon: Presentation,
+    title: "ILT Content Solutions",
+    body: "Structured classroom learning content for engaging facilitator-led sessions.",
+    items: ["Decks & session flow", "Facilitator guides", "Participant workbooks"],
+  },
+  {
+    icon: MonitorPlay,
+    title: "Digital Learning Solutions",
+    body: "Interactive, self-paced learning designed for clarity, engagement, and recall.",
+    items: ["SCORM-compliant modules", "Storyline-based design", "Interactive eLearning"],
+  },
+  {
+    icon: Layers,
+    title: "Blended Learning Journeys",
+    body: "Integrated learning experiences that connect digital and classroom formats.",
+    items: ["Digital + classroom integration", "Reinforcement journeys", "Multi-format learning flow"],
+  },
+];
+
+function ContentExtras() {
+  return (
+    <div className="container-px mx-auto max-w-7xl pb-24 -mt-8 md:-mt-16">
+      {/* What We Deliver */}
+      <div className="card-elegant p-6 md:p-8">
+        <div className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground font-semibold">
+          <span className="inline-block h-px w-8 bg-border align-middle mr-3" />
+          What we deliver
+          <span className="inline-block h-px w-8 bg-border align-middle ml-3" />
+        </div>
+        <div className="mt-6 grid md:grid-cols-3 gap-6 md:divide-x md:divide-border">
+          {contentDeliver.map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-center gap-4 md:px-6 first:md:pl-0 last:md:pr-0">
+              <div className="h-11 w-11 shrink-0 rounded-full bg-primary-soft grid place-items-center text-primary">
+                <Icon className="h-5 w-5" />
+              </div>
+              <p className="text-sm text-foreground/85 leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Explore by Format */}
+      <div className="mt-16 text-center max-w-3xl mx-auto">
+        <h3 className="display-h2">Explore by Format</h3>
+        <div className="mx-auto mt-3 h-[3px] w-16 bg-primary rounded-full" />
+      </div>
+      <div className="mt-10 grid md:grid-cols-3 gap-6">
+        {contentFormats.map(({ icon: Icon, title, body, items }, i) => (
+          <motion.div
+            key={title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="group card-elegant p-7"
+          >
+            <div className="h-14 w-14 rounded-full bg-primary-soft grid place-items-center text-primary">
+              <Icon className="h-6 w-6" />
+            </div>
+            <div className="mt-5 font-display text-lg text-primary font-semibold">{title}</div>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{body}</p>
+            <ul className="mt-5 space-y-2">
+              {items.map((it) => (
+                <li key={it} className="flex gap-2 items-start text-sm">
+                  <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <span className="text-foreground/85">{it}</span>
+                </li>
+              ))}
+            </ul>
+            <Link to="/contact" className="mt-5 inline-flex items-center text-sm font-medium text-primary">
+              View Details <ArrowRight className="ml-1.5 h-4 w-4 transition group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Bottom hint */}
+      <div className="mt-10 rounded-2xl bg-primary-soft/60 border border-primary/15 p-5 flex items-center justify-center gap-3 text-sm text-foreground/80">
+        <Compass className="h-5 w-5 text-primary" />
+        Select a format to explore detailed solutions in ILT, Digital Learning, or Blended Learning.
+      </div>
+    </div>
+  );
+}
+
