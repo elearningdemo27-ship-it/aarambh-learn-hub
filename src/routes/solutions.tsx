@@ -9,9 +9,22 @@ import {
   Mic2,
   ArrowRight,
   Check,
+  Search,
+  Route as RouteIcon,
+  LayoutGrid,
+  Users,
+  ClipboardCheck,
+  BarChart3,
+  Presentation,
+  MonitorPlay,
+  Layers,
+  FileText,
+  Building2,
+  Target,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+
 
 export const Route = createFileRoute("/solutions")({
   head: () => ({
