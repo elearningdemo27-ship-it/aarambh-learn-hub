@@ -416,19 +416,61 @@ function HomePage() {
       {/* CLIENT LOGOS */}
       <section className="section">
         <div className="container-px mx-auto max-w-7xl">
-          <p className="text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Trusted by L&amp;D and business leaders across industries
-          </p>
+          <div className="text-center max-w-3xl mx-auto">
+            <span className="eyebrow justify-center">Our clients</span>
+            <h2 className="display-h2 mt-4">
+              Trusted by Leading Organisations.{" "}
+              <span className="text-primary">Driven by Impact.</span>
+            </h2>
+            <p className="mt-5 text-muted-foreground">
+              From BFSI and education to consulting, retail, technology and more, we partner
+              with organisations across industries to design learning experiences that build
+              capability, drive performance and create real business impact.
+            </p>
+          </div>
+
+          <div className="mt-10 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.25em] text-muted-foreground font-semibold">
+            <span className="h-px w-10 bg-border" />
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            Organisations We've Partnered With
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="h-px w-10 bg-border" />
+          </div>
+
           <div className="mt-10">
             <img
               src={partnersAsset.url}
               alt="Our valued clients and partners including eBay, SBI Life, NSE Academy, IndiaFirst, BIBA, Ericsson, MFIN, Chandigarh University and more"
-              className="w-full max-w-5xl mx-auto rounded-xl"
+              className="w-full max-w-5xl mx-auto rounded-2xl border border-border shadow-soft bg-card p-6"
               loading="lazy"
             />
           </div>
+
+          {/* Impact strip */}
+          <div className="mt-10 rounded-3xl bg-primary text-primary-foreground px-6 py-8 md:px-10 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 text-center shadow-elegant">
+            {[
+              { v: "Multi", l: "Industries served across India" },
+              { v: "300+", l: "Workshops delivered" },
+              { v: "13L+", l: "Learner man-hours impacted" },
+              { v: "250+", l: "eLearning hours created" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="font-display text-3xl md:text-4xl">{s.v}</div>
+                <div className="mt-1 text-xs md:text-sm text-primary-foreground/80">{s.l}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 max-w-3xl mx-auto text-center">
+            <Quote className="h-6 w-6 text-primary/40 mx-auto" />
+            <p className="mt-3 italic text-foreground/80">
+              "We value every partnership and the trust our clients place in us. Together,
+              we create learning that drives real-world impact."
+            </p>
+          </div>
         </div>
       </section>
+
 
       {/* TESTIMONIALS */}
       <section className="sand-bg">

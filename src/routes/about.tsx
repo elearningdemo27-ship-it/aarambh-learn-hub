@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Award, Compass, Sparkles, Users2, ArrowRight, GraduationCap, LayoutTemplate, MessagesSquare, TrendingUp, BrainCircuit, Target } from "lucide-react";
+import { Award, Compass, Sparkles, ArrowRight, GraduationCap, LayoutTemplate, MessagesSquare, TrendingUp, BrainCircuit, Target } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import heroManAsset from "@/assets/hero-man.png.asset.json";
+import heroWomanAsset from "@/assets/hero-woman.png.asset.json";
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -65,44 +68,87 @@ const founders = [
 function AboutPage() {
   return (
     <SiteLayout>
-      <section className="hero-bg">
-        <div className="container-px mx-auto max-w-7xl py-20 md:py-28 grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-8">
-            <span className="eyebrow">About Aarambh</span>
-            <h1 className="display-h1 mt-5">
-              Learning experiences shaped around <em className="text-primary not-italic">people, performance, and purpose</em>
+      {/* HERO — image collage + intro (matches reference) */}
+      <section className="relative overflow-hidden bg-primary-soft/40">
+        {/* Decorative brush strokes */}
+        <div aria-hidden className="absolute -top-16 -left-16 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+        <div aria-hidden className="absolute -bottom-20 -right-10 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
+        <div aria-hidden className="absolute top-6 left-8 grid grid-cols-8 gap-1.5 opacity-40">
+          {Array.from({ length: 48 }).map((_, i) => (
+            <span key={i} className="h-1 w-1 rounded-full bg-primary/60" />
+          ))}
+        </div>
+        <div aria-hidden className="absolute top-10 right-12 grid grid-cols-8 gap-1.5 opacity-40">
+          {Array.from({ length: 40 }).map((_, i) => (
+            <span key={i} className="h-1 w-1 rounded-full bg-primary/60" />
+          ))}
+        </div>
+
+        <div className="container-px mx-auto max-w-7xl py-20 md:py-28 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center relative">
+          {/* Image collage */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-6 order-2 lg:order-1"
+          >
+            <div className="grid grid-cols-2 gap-4 md:gap-5">
+              <div className="flex flex-col gap-4 md:gap-5 pt-8">
+                <div className="aspect-[4/5] overflow-hidden rounded-2xl shadow-elegant ring-1 ring-primary/10">
+                  <img src={heroWomanAsset.url} alt="Facilitator leading a learning workshop" className="h-full w-full object-cover" />
+                </div>
+                <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-soft ring-1 ring-primary/10">
+                  <img src={heroWomanAsset.url} alt="Team collaboration session" className="h-full w-full object-cover object-bottom" />
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-elegant ring-1 ring-primary/10">
+                  <img src={heroManAsset.url} alt="Aarambh L&D consultant" className="h-full w-full object-cover" />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Copy */}
+          <div className="lg:col-span-6 order-1 lg:order-2">
+            <span className="eyebrow">About us</span>
+            <div className="mt-2 h-[3px] w-14 bg-primary rounded-full" />
+            <h1 className="display-h1 mt-6">
+              Learning experiences shaped around{" "}
+              <span className="text-primary">people, performance, and purpose</span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground max-w-3xl leading-relaxed">
-              Aarambh Resource Management Solutions is a Learning &amp; Development consulting
-              practice that helps organisations build capability through purposeful learning
-              design, digital learning, facilitated interventions and experiential programs.
-            </p>
+            <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Aarambh Resource Management Solutions is a Learning &amp; Development consulting
+                practice that helps organisations build capability through purposeful learning
+                design, digital learning, facilitated interventions, and experiential programs.
+              </p>
+              <p>
+                We work with businesses to understand their context, identify capability needs,
+                and create learning solutions that are practical, engaging, and easy to apply at
+                work. Our work spans instructional design, eLearning, ILT content, blended
+                learning journeys, leadership development, behavioural skills, sales capability,
+                BFSI domain learning, offsites, and keynote sessions.
+              </p>
+              <p>
+                Our strength lies in combining business understanding, instructional design,
+                facilitation expertise, and real-world experience to create learning that
+                supports performance — not just participation.
+              </p>
+            </div>
+            <div className="mt-8 inline-flex items-center gap-3 text-sm">
+              <span className="text-foreground/80">Learn more about our</span>
+              <a href="#founders" className="inline-flex items-center gap-2 font-semibold text-primary">
+                Founders
+                <span className="h-8 w-8 rounded-full bg-primary text-primary-foreground grid place-items-center">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container-px mx-auto max-w-7xl grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-5">
-            <span className="eyebrow">Who we are</span>
-            <h2 className="display-h2 mt-3">
-              Practitioner-led learning. Designed for real workplace impact.
-            </h2>
-          </div>
-          <div className="lg:col-span-7 text-muted-foreground leading-relaxed space-y-4 text-lg">
-            <p>
-              We're an experienced team of L&amp;D practitioners, facilitators, instructional
-              designers and digital learning specialists. Our work sits at the intersection of
-              business strategy, learning science and emerging technology.
-            </p>
-            <p>
-              For three decades we've partnered with organisations to translate complex
-              capability needs into learning experiences that change behaviour, lift
-              performance and outlast the program itself.
-            </p>
-          </div>
-        </div>
-      </section>
 
       <section className="sand-bg relative overflow-hidden">
         {/* decorative brush strokes */}
@@ -175,7 +221,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
+      <section id="founders" className="section scroll-mt-24">
+
         <div className="container-px mx-auto max-w-7xl">
           <div className="max-w-2xl">
             <span className="eyebrow">Founders</span>
