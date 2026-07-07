@@ -270,31 +270,9 @@ function StrategyExtras() {
         ))}
       </div>
 
-      {/* Our Approach */}
-      <div className="mt-20 text-center max-w-3xl mx-auto">
-        <h3 className="display-h2">Our Approach</h3>
-        <div className="mx-auto mt-3 h-[3px] w-16 bg-primary rounded-full" />
-        <p className="mt-4 text-muted-foreground">
-          A strategic process that turns business needs into meaningful learning architecture.
-        </p>
-      </div>
-      <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {strategyApproach.map((step, i) => (
-          <motion.div
-            key={step.n}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.08 }}
-            className="card-elegant p-5 relative"
-          >
-            <div className="absolute -top-3 -left-3 h-10 w-10 rounded-full bg-primary text-primary-foreground grid place-items-center font-display text-lg shadow-elegant">
-              {step.n}
-            </div>
-            <p className="mt-4 text-sm leading-relaxed text-foreground/85">{step.text}</p>
-          </motion.div>
-        ))}
-      </div>
+      {/* Our Approach — journey map */}
+      <ApproachJourney />
+
 
       {/* Three pillars */}
       <div className="mt-16 grid md:grid-cols-3 gap-5">
