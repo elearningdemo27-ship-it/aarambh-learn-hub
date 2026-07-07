@@ -310,6 +310,127 @@ function StrategyExtras() {
   );
 }
 
+/* -------------------- Approach journey map -------------------- */
+
+function ApproachJourney() {
+  return (
+    <div className="mt-24 relative overflow-hidden rounded-3xl border border-primary/15 bg-gradient-to-br from-primary-soft/60 via-background to-primary-soft/40 p-6 md:p-12">
+      {/* decorative dots */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, var(--color-primary, #5b2c81) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
+      />
+      <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
+      <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+
+      <div className="relative text-center max-w-3xl mx-auto">
+        <span className="eyebrow">The journey</span>
+        <h3 className="display-h2 mt-3">Our Approach</h3>
+        <div className="mx-auto mt-3 h-[3px] w-16 bg-primary rounded-full" />
+        <p className="mt-4 text-muted-foreground">
+          A structured five-stage journey that turns business needs into meaningful learning architecture.
+        </p>
+      </div>
+
+      {/* Desktop: winding path */}
+      <div className="relative mt-16 hidden lg:block">
+        <svg
+          className="absolute inset-x-0 top-10 mx-auto"
+          width="100%"
+          height="220"
+          viewBox="0 0 1200 220"
+          fill="none"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          <motion.path
+            d="M 60 110 C 200 20, 320 200, 480 110 S 760 20, 900 110 S 1120 200, 1200 110"
+            stroke="var(--color-primary, #5b2c81)"
+            strokeWidth="2.5"
+            strokeDasharray="8 8"
+            strokeLinecap="round"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.8, ease: "easeInOut" }}
+          />
+        </svg>
+
+        <div className="relative grid grid-cols-5 gap-4">
+          {strategyApproach.map((step, i) => {
+            const Icon = step.icon;
+            const up = i % 2 === 0;
+            return (
+              <motion.div
+                key={step.n}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+                className={`flex flex-col items-center ${up ? "" : "mt-32"}`}
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl" />
+                  <div className="relative h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground grid place-items-center shadow-elegant ring-4 ring-background">
+                    <Icon className="h-8 w-8" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 h-8 w-8 rounded-full bg-background border-2 border-primary text-primary grid place-items-center font-display font-bold text-sm shadow-soft">
+                    {step.n}
+                  </div>
+                </div>
+                <div className="mt-5 text-center max-w-[200px]">
+                  <div className="font-display font-semibold text-primary">{step.title}</div>
+                  <p className="mt-1.5 text-xs leading-relaxed text-foreground/75">{step.text}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile / tablet: vertical timeline */}
+      <div className="relative mt-12 lg:hidden">
+        <div className="absolute left-8 top-2 bottom-2 w-0.5 bg-gradient-to-b from-primary/60 via-primary/40 to-primary/10" />
+        <div className="space-y-6">
+          {strategyApproach.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={step.n}
+                initial={{ opacity: 0, x: -16 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative flex gap-5 items-start"
+              >
+                <div className="relative z-10 shrink-0">
+                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground grid place-items-center shadow-elegant ring-4 ring-background">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <div className="absolute -top-1 -right-1 h-7 w-7 rounded-full bg-background border-2 border-primary text-primary grid place-items-center font-display font-bold text-xs">
+                    {step.n}
+                  </div>
+                </div>
+                <div className="card-elegant p-5 flex-1">
+                  <div className="font-display font-semibold text-primary">{step.title}</div>
+                  <p className="mt-1.5 text-sm leading-relaxed text-foreground/80">{step.text}</p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 /* -------------------- Content extras -------------------- */
 
 const contentDeliver = [
