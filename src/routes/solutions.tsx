@@ -329,68 +329,52 @@ function ApproachJourney() {
       <div className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
 
       <div className="relative text-center max-w-3xl mx-auto">
-        <span className="eyebrow">The journey</span>
-        <h3 className="display-h2 mt-3">Our Approach</h3>
-        <div className="mx-auto mt-3 h-[3px] w-16 bg-primary rounded-full" />
-        <p className="mt-4 text-muted-foreground">
-          A structured five-stage journey that turns business needs into meaningful learning architecture.
+        <h3 className="display-h2 text-primary">Our Approach</h3>
+        <p className="mt-3 text-muted-foreground">
+          A strategic process that turns business needs into meaningful learning architecture.
         </p>
       </div>
 
-      {/* Desktop: winding path */}
-      <div className="relative mt-16 hidden lg:block">
-        <svg
-          className="absolute inset-x-0 top-10 mx-auto"
-          width="100%"
-          height="220"
-          viewBox="0 0 1200 220"
-          fill="none"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <motion.path
-            d="M 60 110 C 200 20, 320 200, 480 110 S 760 20, 900 110 S 1120 200, 1200 110"
-            stroke="var(--color-primary, #5b2c81)"
-            strokeWidth="2.5"
-            strokeDasharray="8 8"
-            strokeLinecap="round"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.8, ease: "easeInOut" }}
-          />
-        </svg>
-
-        <div className="relative grid grid-cols-5 gap-4">
+      {/* Desktop: zigzag with dashed connectors */}
+      <div className="relative mt-14 hidden lg:block max-w-5xl mx-auto">
+        <div className="flex flex-col gap-8">
           {strategyApproach.map((step, i) => {
             const Icon = step.icon;
-            const up = i % 2 === 0;
+            const leftSide = i % 2 === 0;
             return (
               <motion.div
                 key={step.n}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
-                className={`flex flex-col items-center ${up ? "" : "mt-32"}`}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className={`flex items-center gap-6 ${leftSide ? "" : "flex-row-reverse"}`}
               >
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl" />
-                  <div className="relative h-20 w-20 rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground grid place-items-center shadow-elegant ring-4 ring-background">
-                    <Icon className="h-8 w-8" />
+                {/* Card */}
+                <div className="flex-1 flex items-center gap-5 rounded-full bg-background border border-primary/15 shadow-soft px-6 py-4">
+                  <div className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/25 grid place-items-center text-primary bg-primary-soft/50">
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <div className="absolute -top-2 -right-2 h-8 w-8 rounded-full bg-background border-2 border-primary text-primary grid place-items-center font-display font-bold text-sm shadow-soft">
-                    {step.n}
-                  </div>
+                  <div className="font-display font-bold text-3xl text-primary leading-none">{step.n}</div>
+                  <p className="text-sm text-foreground/85 leading-snug">{step.text}</p>
                 </div>
-                <div className="mt-5 text-center max-w-[200px]">
-                  <div className="font-display font-semibold text-primary">{step.title}</div>
-                  <p className="mt-1.5 text-xs leading-relaxed text-foreground/75">{step.text}</p>
+
+                {/* Dashed connector dot */}
+                <div className="shrink-0 w-24 flex items-center justify-center">
+                  <div className="h-2.5 w-2.5 rounded-full bg-primary" />
                 </div>
+
+                {/* spacer for the other side */}
+                <div className="flex-1" />
               </motion.div>
             );
           })}
+
+          {/* Vertical dashed spine */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-6 bottom-6 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-primary/40"
+          />
         </div>
       </div>
 
