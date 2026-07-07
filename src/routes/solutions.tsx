@@ -350,17 +350,24 @@ function ApproachJourney() {
                 transition={{ duration: 0.45, delay: i * 0.1 }}
                 className={`flex items-center gap-6 ${leftSide ? "" : "flex-row-reverse"}`}
               >
-                {/* Card */}
-                <div className="flex-1 flex items-center gap-5 rounded-full bg-background border border-primary/15 shadow-soft px-6 py-4">
-                  <div className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/25 grid place-items-center text-primary bg-primary-soft/50">
-                    <Icon className="h-6 w-6" />
+                {/* Card with connector line */}
+                <div className="flex-1 relative">
+                  <div className="flex items-center gap-5 rounded-full bg-background border border-primary/15 shadow-soft px-6 py-4 relative z-10">
+                    <div className="h-14 w-14 shrink-0 rounded-full border-2 border-primary/25 grid place-items-center text-primary bg-primary-soft/50">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div className="font-display font-bold text-3xl text-primary leading-none">{step.n}</div>
+                    <p className="text-sm text-foreground/85 leading-snug">{step.text}</p>
                   </div>
-                  <div className="font-display font-bold text-3xl text-primary leading-none">{step.n}</div>
-                  <p className="text-sm text-foreground/85 leading-snug">{step.text}</p>
+                  {/* Horizontal dashed line from card to dot */}
+                  <div
+                    aria-hidden
+                    className={`absolute top-1/2 -translate-y-1/2 h-0 border-t-2 border-dashed border-primary/40 z-0 ${leftSide ? "right-0 w-[4.5rem] translate-x-full" : "left-0 w-[4.5rem] -translate-x-full"}`}
+                  />
                 </div>
 
                 {/* Dashed connector dot */}
-                <div className="shrink-0 w-24 flex items-center justify-center">
+                <div className="shrink-0 w-24 flex items-center justify-center relative z-10">
                   <div className="h-2.5 w-2.5 rounded-full bg-primary" />
                 </div>
 
@@ -370,7 +377,7 @@ function ApproachJourney() {
             );
           })}
 
-          {/* Vertical dashed spine */}
+          {/* Vertical dashed spine connecting all dots */}
           <div
             aria-hidden
             className="pointer-events-none absolute top-6 bottom-6 left-1/2 -translate-x-1/2 border-l-2 border-dashed border-primary/40"
