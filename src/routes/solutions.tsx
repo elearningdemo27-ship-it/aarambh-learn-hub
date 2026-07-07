@@ -235,11 +235,11 @@ const strategyHelpBuild = [
 ];
 
 const strategyApproach = [
-  { n: "1", text: "Understand the business context and performance need" },
-  { n: "2", text: "Define learner profiles, audience needs, and success expectations" },
-  { n: "3", text: "Design the learning journey across roles, levels, and stages" },
-  { n: "4", text: "Structure content, engagement methods, and practice opportunities" },
-  { n: "5", text: "Align assessments, application, and impact measurement" },
+  { n: "1", icon: Search, title: "Discover", text: "Understand the business context and performance need" },
+  { n: "2", icon: Users, title: "Define", text: "Define learner profiles, audience needs, and success expectations" },
+  { n: "3", icon: RouteIcon, title: "Design", text: "Design the learning journey across roles, levels, and stages" },
+  { n: "4", icon: LayoutGrid, title: "Develop", text: "Structure content, engagement methods, and practice opportunities" },
+  { n: "5", icon: BarChart3, title: "Deliver Impact", text: "Align assessments, application, and impact measurement" },
 ];
 
 const strategyPillars = [
